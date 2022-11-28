@@ -33,3 +33,23 @@ async function showExRate (id){
     const d= document.getElementById('exrate');
     d.innerText=`${rate.Cur_Scale}${rate.Cur_Name} = ${rate.Cur_OfficialRate} BYN`;
 }
+async function sendMessage(){
+    const username=document.getElementById('username');
+    const msg=document.getElementById('msg');
+    const req= {
+        name:username.value,
+        messege: msg.value
+
+    }
+    const reqJSON= JSON.stringify(req);
+    const url = 'http://192.168.100.101:8080';
+   await fetch(url,{
+        method:'POST',
+        body: reqJSON,
+        headers:{
+            'Content-Type':'application/json'
+        }
+
+    })
+    msg.value='';
+}
